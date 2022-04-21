@@ -26,3 +26,25 @@ console.log(str5);
 
 var str6 = 'doggo\t\t\tmeow';
 console.log(str6);
+
+var ex1 = '100';
+
+// tamplet literal
+var tag = '<ul>\n\t<li>\n\t\t<a href="#">\n\t\t\t목록1\n\t\t</a>\n\t</li>\n</ul>';
+console.log(tag);
+
+// thing above is so complicated, so u can use ` to show as a template;
+var template = `
+<ul>
+    <li>
+        <a href="#">목록1</a>
+    </li>
+</ul>`;
+console.log(template);
+
+//when I want to print student name but there are many
+var studentName = 'Haewon Seo';
+var engScore = 99;
+console.log(studentName + `'s english score is ` + engScore + '/100.');
+// the above can also be written as following
+console.log(`${studentName}'s english score is ${engScore}/100.`);
