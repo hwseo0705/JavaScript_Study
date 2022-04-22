@@ -6,10 +6,10 @@ var interval = +prompt(`몇 cm마다 : `);
 // var interval = 5;
 var nextHeight = startHeight;
 var result = '';
-while (nextHeight <= 190) {
-    var weight = (nextHeight - 100) * 0.9;
+while (nextHeight <= endHeight) {
+    var weight = ((nextHeight - 100) * 0.9).toFixed(2);
     // console.log(`${nextHeight}cm ${weight.toFixed(2)}kg`);
-    nextHeight += 5;
-    result += `${nextHeight}cm ${weight.toFixed(2)}kg\n`
+    result += `${nextHeight}cm ${weight}kg\n`
+    nextHeight += interval;
 }
 alert(result);

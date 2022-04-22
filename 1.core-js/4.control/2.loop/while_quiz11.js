@@ -3,10 +3,9 @@ var inputNum = +prompt(`몇 개의 *를 출력할까요? `);
 var i = 1;
 var result = '';
 while (i <= inputNum) {
+    result += '*';
     if (i % 5 === 0) {
-        result += '*\n';
-    } else {
-        result += '*';
+        result += '\n';
     }
     i++;
 }
