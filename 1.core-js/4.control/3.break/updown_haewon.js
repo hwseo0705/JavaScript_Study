@@ -1,3 +1,6 @@
+// might be able to make it better
+// wasn't able to focus
+
 // prompt user: pick level
 var inputMessage = '';
 inputMessage += `~~~~~~~ 재미있는 UP&DOWN 게임 ~~~~~~~\n`;
@@ -21,6 +24,10 @@ switch (input) {
         loopCount = 10;
         level = '하';
         break;
+    default:
+        alert(`없는 값입니다. 자동으로 상난이도로 맞추어집니다.`);
+        loopCount = 3;
+        level = '상';
 }
 
 // initial guessMessage
@@ -41,31 +48,31 @@ while (loopCount > 0) {
     // if the guess is correct, break
     if (guess === answer) {
         break;
-    } else {
-        // out of range alert
-        if (guess < low || guess > high) {
-            guess = +prompt(`범위 안의 값을 입력하세요!!` + `# [${low} ~ ${high}]`);
-            continue;
-        }
-        guessCount++;
-        guessMessage = '';
-        // set new low and high according to input
-        if (guess < answer) {
-            low = guess;
-            guessMessage += `UP!!!`;
-        } else {
-            high = guess;
-            guessMessage += `DOWN!!`;
-        }
-        loopCount--;
-        guessMessage += `\n${loopCount}번의 기회가 남았습니다.`;
-        if (loopCount != 0) {
-            guess = +prompt(guessMessage + `# [${low} ~ ${high}]`);
-        }
     }
+    // out of range alert
+    if (guess <= low || guess >= high) {
+        guess = +prompt(`범위 안의 값을 입력하세요!!` + `# [${low} ~ ${high}]`);
+        continue;
+    }
+    guessCount++;
+    guessMessage = '';
+    // set new low and high according to input
+    if (guess < answer) {
+        low = guess;
+        guessMessage += `UP!!!`;
+    } else {
+        high = guess;
+        guessMessage += `DOWN!!`;
+    }
+    loopCount--;
+    guessMessage += `\n${loopCount}번의 기회가 남았습니다.`;
+    if (loopCount != 0) {
+        guess = +prompt(guessMessage + `# [${low} ~ ${high}]`);
+    }
+
 }
 if (loopCount === 0) {
-    alert(guessMessage + `\n기회를 모두 소진했습니다. GAME OVER!!`);
+    alert(guessMessage + `\n기회를 모두 소진했습니다. GAME OVER!!\n정답은 ${answer}입니다.`);
 } else {
     alert(`정답입니다! ${guessCount}번 만에 맞추셨습니다!`);
 }
