@@ -29,11 +29,11 @@ guessMessage += `${level}난이도입니다. ${loopCount}번안에 맞춰주세�
 guessMessage += `\t [ 1 ~ 50 사이의 무작위 숫자를 ${loopCount}번 안에 맞춰보세요!! ]\n`;
 // low & high
 var low = 1;
-var high = 50;
+var high = 100;
 // count how many times the user guessed
 var guessCount = 0;
 // random generated answer
-var answer = 30; //Math.floor(Math.random() * 50 + 1);
+var answer = Math.floor(Math.random() * high + low);
 // intial prompt
 var guess = +prompt(guessMessage + `# [${low} ~ ${high}]`);
 guessCount++;
