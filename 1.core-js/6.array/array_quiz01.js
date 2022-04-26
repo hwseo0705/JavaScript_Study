@@ -11,10 +11,9 @@
 */
 
 var inputList = [];
-var promptMessage = `숫자를 입력하세요.\n그만두려면 '그만'이라고 입력하세요!`;
 var total = 0;
 while (true) {
-    var input = prompt(promptMessage);
+    var input = prompt(`숫자를 입력하세요.\n그만두려면 '그만'이라고 입력하세요!`);
     if (input === '그만') {
         break;
     }
