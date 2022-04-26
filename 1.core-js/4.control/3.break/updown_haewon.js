@@ -18,7 +18,7 @@ switch (input) {
         break;
     case 2:
         loopCount = 6;
-        leve = '중';
+        level = '중';
         break;
     case 3:
         loopCount = 10;
