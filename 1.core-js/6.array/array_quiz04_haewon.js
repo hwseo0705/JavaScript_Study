@@ -1,12 +1,12 @@
 var student = 0;
-while (student >80 || student < 1) {
+while (student > 80 || student < 1) {
     student = +prompt(`학생 수를 입력해주세요.\n1~80 사이로 입력해주세요.`);
 }
 var scoresList = [];
 var mapScores = Array(11).fill('');
 
 for (var i = 0; i < student; i++) {
-    var score = +prompt(`15명의 점수를 입력해주세요.`)
+    var score = +prompt(`15명의 점수를 입력해주세요. ${i}번: `)
     scoresList.push(score);
     var indexStar = parseInt(score / 10);
     mapScores[indexStar] += '*';
