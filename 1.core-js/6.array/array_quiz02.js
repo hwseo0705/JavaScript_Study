@@ -12,12 +12,12 @@
 var membersList = ['유노윤호', '최강창민', '영웅재중', '믹키유천', '시아준수'];
 while (true) {
     var deleteMember = prompt(`현재 맴버: [${membersList}]\n삭제할 이름을 입력하세요.`);
-    if (membersList.includes(deleteMember) === false) {
+    if (!membersList.includes(deleteMember)) {
         alert(`${deleteMember}은(는) 잘못된 이름입니다.\n다시 입력하세요!`);
         continue;
     }
     membersList.splice(membersList.indexOf(deleteMember), 1);
-    if (membersList.length === 0) {
+    if (membersList.length <= 0) {
         alert(`모든 멤버가 삭제되었습니다.`);
         break;
     }
