@@ -61,3 +61,6 @@ console.log(cat);
 // removing a property during runtime
 delete cat.master;
 console.log(cat);
+
+// empty property
+var obj = {};
