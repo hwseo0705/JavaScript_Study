@@ -8,11 +8,7 @@
 */
 
 function search(numbers, targetNum) {
-    if (numbers.includes(targetNum)) {
-        return numbers.lastIndexOf(targetNum) + 1;
-    } else {
-        return -1;
-    }
+    return numbers.lastIndexOf(targetNum) + 1;
 }
 
 var numbers = [];
@@ -22,10 +18,10 @@ while (true) {
     if (inputMsg === '그만') break;
     numbers.push(+inputMsg);
 }
-
 var targetNum = +prompt(`찾을 값: `);
 
 var result = search(numbers, targetNum);
+
 if (result === -1) {
     alert(`탐색에 실패했습니다.`);
 } else {

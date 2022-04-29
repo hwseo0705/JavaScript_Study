@@ -19,11 +19,16 @@
         - 출력 예시:
             키 -> 178.4cm, 체중-> 78.2kg의 체질량지수는: 24.57입니다"
 */
-    
+
+//원하는 자리수만큼 반올림해주는 함수
+function round(number, pos) {
+    return Math.round(number * 10 ** pos) / 10 ** pos;
+}
 
 function calcBMI(height, weight) {
-    height *= .01;
-    var bmi = (weight / (height * height)).toFixed(2);
+    height *= 0.01;
+    //var bmi = (weight / (height * height)).toFixed(2);
+    var bmi = round(weight / (height * height), 2);
     if (bmi >= 25) {
         console.log(`당신은 과체중입니다.`);
     } else if (bmi <= 18.5) {

@@ -16,10 +16,9 @@ function calcDivisor(num) {
     var count = 0;
     var list = [];
     var message = '';
-    while (count < num) {
-        count++;
-        if (num % count === 0) {
-            list.push(count);
+    for (var i = 1; i <= num; i++) {
+        if (num % i === 0) {
+            list.push(i);
         }
     }
     message += `10의 약수: ${list}\n`;

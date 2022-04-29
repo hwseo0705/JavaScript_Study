@@ -11,12 +11,11 @@ function search(numbers, targetNum) {
     var count = 0;
     var index = 0;
     var whereAt = '';
-    for (var n of numbers) {
-        if (n === targetNum) {
+    for (var i = 0; i < numbers.length; i++) {
+        if (numbers[i] === targetNum) {
             count++;
-            whereAt += `vx[${index}] = ${targetNum}` + '\n';
+            whereAt += `vx[${i}] = ${targetNum}` + '\n';
         }
-        index++;
     }
     return [count, whereAt];
 

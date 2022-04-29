@@ -16,7 +16,7 @@ function calcTotalAndAvg(numbers) {
     for (var n of numbers) {
         total += n;
     }
-    alert(`전달된 숫자 총합: ${total}, 평균: ${total / numbers.length}`);
+    return total;
 }
 
 var numbers = [];
@@ -26,4 +26,7 @@ while (true) {
     if (inputMsg === '그만') break;
     numbers.push(+inputMsg);
 }
-calcTotalAndAvg(numbers);
+
+
+var total = calcTotalAndAvg(numbers);
+alert(`전달된 숫자 총합: ${total}, 평균: ${total / numbers.length}`);
