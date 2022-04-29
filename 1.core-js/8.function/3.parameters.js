@@ -68,3 +68,15 @@ sayHello('English');
 sayHello('Chinese');
 sayHello('French');
 sayHello();
+
+// A function without parameters
+function selectRandomPet() {
+    var pets = [`dog`, `cat`, `bird`, `tiger`, `frog`];
+    // Random integer from 0 to 4
+    var rn = Math.floor(Math.random() * pets.length);
+    return pets[rn];
+}
+
+console.log(`------------------------------------------`);
+
+console.log(`selected animal: ${selectRandomPet()}`);
