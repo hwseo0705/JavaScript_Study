@@ -23,9 +23,11 @@ function search(numbers, targetNum) {
 }
 
 var numbers = [];
-var howMany = 7;
-for (var i = 0; i < howMany; i++) {
-    numbers.push(+prompt(`vx[${i}]`));
+var i = 0;
+while (true) {
+    var inputMsg = prompt(`vx[${i++}]`);
+    if (inputMsg === '그만') break;
+    numbers.push(+inputMsg);
 }
 var targetNum = +prompt(`찾을 값: `);
 

@@ -8,15 +8,23 @@
     코드를 작성하세요
 */
 
-function min2(n1, n2) {
-    return (n1 < n2) ? n1 : n2;
+function min(numbers) {
+    var minNum = numbers[0];
+    for (var n of numbers) {
+        if (n < minNum) {
+            minNum = n;
+        }
+    }
+    return minNum;
 }
 
+var nums = [];
+
 while (true) {
-    var first = prompt(`종료하려면 '그만'을 입력하세요\n첫번째 정수: `);
-    if (first === '그만') {
-        break;
-    }
-    var second = +prompt('두번째 정수: ');
-    alert(`둘 중 작은 수: ${min2(+first, second)}`);
+    var inputMsg = prompt('숫자를 입력: ');
+    if (inputMsg === '그만') break;
+    nums.push(+inputMsg);
 }
+
+var result = min(nums);
+alert(result);
