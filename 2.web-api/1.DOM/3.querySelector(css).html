@@ -53,6 +53,10 @@
         for (let $li of $elems) {
             $li.style.border = '2px dashed gray';
         }
+
+        console.log(document.querySelector('.green')); // null
+        console.log(document.querySelector('!green')); // uncaught DOMException
+
     </script>
 
 </body>
