@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById</title>
+</head>
+
+<body>
+    <!-- ul>li#apple*4 -->
+    <ul>
+        <li id="apple">apple!</li>
+        <li id="banana">banana!</li>
+        <li id="grape">grape!</li>
+        <li id="pineapple">pineapple!</li>
+    </ul>
+
+    <script>
+        // get the body-tag's objects
+        // console.log(document.body);
+
+        // get the objects of html-tag
+        //console.log(document.documentElement);
+
+        // Acquire element node with ID properties
+        // $ indicates tags
+        const $banana = document.getElementById('banana');
+        // to get the text content 'banana!' and change the content
+        console.log($banana.textContent);
+        console.log($banana.style);
+        $banana.textContent = 'BANANANANA';
+
+        $banana.style.color = 'red';
+        $banana.style.backgroundColor = 'yellow';
+
+        // The element of the ID properties is automatically registered as a global variable.
+        // let grape = 'grape~~'; // will not change the grape textcontent cuz now grape
+        // is not the Id, it is a variable. below works but should use getElementById instead
+        grape.textContent = 'Delicious Grape';
+    </script>
+</body>
+
+</html>

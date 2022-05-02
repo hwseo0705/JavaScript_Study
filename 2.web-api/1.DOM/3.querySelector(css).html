@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Selector</title>
+</head>
+
+<body>
+    <!-- ul#fruits>li.fr*4 -->
+    <ul id="fruits">
+        <li class="fr apple">apple</li>
+        <li class="fr banana">banana</li>
+        <li id="dole-tomato" class="fr tomato">tomato</li>
+        <li class="fr grape">grape</li>
+        <li class="fr">pineapple</li>
+    </ul>
+
+    <script>
+        // you can use the way you would use css as an argument
+        const $grape = document.querySelector('.grape');
+        console.log($grape);
+
+        const $pineapple = document.querySelector('#fruits > li:nth-child(4)');
+        console.log($pineapple);
+
+        const $banana = document.querySelector('.apple + li');
+        console.log($banana);
+
+        // check the difference
+        //const $tomato = document.querySelector('#dole-tomato');
+        const $tomato = document.getElementById('dole-tomato');
+        console.log($tomato);
+        $tomato.style.fontSize = '1.5em';
+
+        // should target all 4 lists, but it is only bringing the first one 'apple' but
+        // you can see that querySelector cannot select multiple, it can only get one at a time
+        // const $elems = document.querySelector('.fr');
+
+        // so you use this instead <유사배열>
+        // this is also not an array, although it seems like it
+        const $elems = document.querySelectorAll('.fr');
+        console.log($elems);
+
+        /*
+        for (let i = 0; i < $elems.length; i++) {
+            $elems[i].style.border = '2px dashed gray';
+        }
+        */
+        
+        for (let $li of $elems) {
+            $li.style.border = '2px dashed gray';
+        }
+    </script>
+
+</body>
+
+</html>

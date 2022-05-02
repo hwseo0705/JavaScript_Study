@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementByTagName, getElementByClassName</title>
+</head>
+
+<body>
+    <!-- ul>li#apple*4 -->
+    <ul>
+        <li id="apple">apple!</li>
+        <li id="banana">banana!</li>
+        <li id="grape">grape!</li>
+        <li id="pineapple">pineapple!</li>
+    </ul>
+
+    <ul class="vegitable">
+        <li>carrot</li>
+        <li>onion</li>
+        <li>bell-pepper</li>
+    </ul>
+
+    <script>
+
+        // getting it by tag/class name is dangerous because if I call by tag, 
+        // there are going to be many with the same tag 'li', and the 
+        // length of the elem list is going to be large.
+        // this will make it hard to work with certain elements
+
+        const $elems = document.getElementsByTagName('li');
+        console.log($elems);
+
+        const nums = [1, 2, 3, 4, 5];
+        // list of functions nums can use
+        console.log(nums.__proto__);
+
+        //  $elems is not an array. therefore, it does not show the functions that
+        // arrays can use, but...
+        console.log($elems.__proto__);
+        
+        // index and length work, but like pop, push, etc. don't work
+        console.log($elems[0]);
+        console.log(`elems' length: ${$elems.length}`);
+
+        // two ways to get to the style of the element
+        $elems[2].style.background = 'violet';
+        $elems.grape.style.width = 'fit-content';
+
+    </script>
+</body>
+
+</html>
