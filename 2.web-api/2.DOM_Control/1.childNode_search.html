@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getChildNode</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li class="apple">apple</li>
+        <li class="banana">banana</li>
+        <li class="grape">grape</li>
+    </ul>
+
+    <div class="box">
+
+    </div>
+
+    <!-- script has to be after the html code -->
+    <script>
+        const $fruits = document.getElementById('fruits'); // a lil faster
+        // const $fruits = document.querySelector('#fruits');
+
+        // the childNode and chidlren have different numbers, becuz childNode counts tabs and stuff
+        // so if you wanna get children, use children instead of childNode
+        console.log($fruits.childNodes);
+        console.log($fruits.children);
+
+        //  searching all child nodes of the existing node, except text nodes
+        const $childList = $fruits.children;
+        const $firstChild1 = $childList[0];
+        console.log($firstChild1);
+        // firstChild and lastChild will not actually get the first children 'apple',
+        // it will get the 'text' node -> childNodes!!! so do not use these
+        const $firstChild2 = $fruits.firstChild;
+        console.log($firstChild2);
+        // you should use this instead, firstElementChild and lastElementChild
+        const $firstChild3 = $fruits.firstElementChild;
+        console.log($firstChild3);
+
+        console.log(`------------------------------------------`);
+
+        const $lastChild1 = $childList[$childList.length - 1];
+        const $lastChild2 = $fruits.lastElementChild;
+        console.log($lastChild1 === $lastChild2);
+
+        console.log(`------------------------------------------`);
+
+        // it is true without having any child if there is a space between.
+        // remove space and it will show false, so do not use this thing
+        const $box = document.querySelector('.box');
+        console.log($box.hasChildNodes());
+        // use this instead
+        console.log(!!$box.children.length);
+    </script>
+</body>
+
+</html>
