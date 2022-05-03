@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul id="fruits">
+            <li class="apples">apple</li>
+            <li class="banana">banana</li>
+            <li class="grape">grape</li>
+        </ul>
+    </div>
+
+    <!-- table#board>tr*2>td*2 -->
+    <table id="board">
+        <tr>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+    </table>
+
+    <script>
+        // Acquisition of standard elements of node search
+        const $fruits = document.querySelector('#fruits');
+
+        // searching for parent
+        const $wrap = $fruits.parentElement;
+        console.log($wrap);
+
+        const $banana = $fruits.children[1];
+        console.log($banana.parentElement.lastElementChild);
+        console.log($banana.parentElement.parentElement);
+
+        console.log(`------------------------------------------`);
+        
+        // next/previous sibling node search
+        // use nextElementSibling since nextSibling could cause issues
+        console.log($banana.nextElementSibling);
+        console.log($banana.previousElementSibling);
+        console.log($fruits.firstElementChild.nextElementSibling);
+        
+        console.log(`------------------------------------------`);
+
+        /*
+            table tag warnings
+            - table tag's direct child is tbody even if you didnt write it
+        */
+        const $board = document.getElementById('board');
+        // you would think that this would work but it doesnt lol
+        // $board.firstElementChild is tbody, which we did not specify
+        console.log($board.firstElementChild.lastElementChild);
+        console.log($board.firstElementChild.firstElementChild.firstElementChild);
+
+    </script>
+</body>
+
+</html>

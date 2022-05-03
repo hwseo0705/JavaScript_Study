@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #greet span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="greet">
+        Hello <span>JavaScript!</span>
+    </div>
+
+    <script>
+        const $greet = document.getElementById('greet');
+        // just the text, but don't use it
+        //const text = $greet.innerText;
+
+        // counts spaces as well, but if you don't want that, use trim()
+        // trim() gets rid of the empty spaces between Strings
+        const text = $greet.textContent.trim();
+        console.log(text);
+
+        // text modify
+        // if you do this, the span tag is going to be removed
+        // $greet.textContent = 'Hello JS!';
+        // if you want to keep the span tag
+        $greet.firstElementChild.textContent = 'JS!';
+
+        // $greet.textContent = 'Hello <span>JS!</span>';
+        $greet.innerHTML = 'Hello <span>JS!</span>';
+
+    </script>
+</body>
+
+</html>
