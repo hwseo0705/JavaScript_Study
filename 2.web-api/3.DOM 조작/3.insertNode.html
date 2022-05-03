@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li>apple</li>
+        <li>banana</li>
+        <li>grape</li>
+    </ul>
+    
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $newLi = document.createElement('li');
+        $newLi.textContent = 'mango';
+        // append child can only add to the last index
+        // this will insert $newLi before the specified element
+        // $fruits.insertBefore($newLi, $fruits.children[1]);
+        // $fruits.insertBefore($newLi, $fruits.lastElementChild);
+        // $fruits.insertBefore($newLi, document.querySelector('#fruits > li:nth-child(2)'));
+        $fruits.insertBefore($newLi, $fruits.firstElementChild.nextElementSibling);
+    </script>
+</body>
+
+</html>
