@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li>apple</li>
+        <li>strawberry</li>
+        <li>grapefruit</li>
+        <li>lime</li>
+        <li>lemon</li>
+        <li>banana</li>
+    </ul>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $mango = $fruits.firstElementChild.cloneNode();
+        $mango.textContent = 'Mango';
+
+        // replace node (apple -> mango)
+        // replaceChild(newChild, oldChild)
+        $fruits.replaceChild($mango, $fruits.firstElementChild);
+
+        // remove node
+        $fruits.removeChild($fruits.lastElementChild);
+
+        // delete all node function
+        // $parentNode : parent of the children to be removed
+        function removeAllChild($parentNode) {
+            // $parentNode.children.length == 0
+            // if you use for loop, this is automatically going to fix their indicies
+            // so if u wanted to use for loop, you could reverse the loop so it does not adjust its indices
+            // or I could put,,, !!$parentNode.children.length inside the while loop
+            while ($parentNode.firstElementChild != null) {
+                $parentNode.removeChild($parentNode.firstElementChild);
+            }
+        }
+        removeAllChild($fruits);
+    </script>
+</body>
+
+</html>

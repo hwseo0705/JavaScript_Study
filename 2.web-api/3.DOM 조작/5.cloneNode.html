@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cloneNode</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li class="apple"><a href="#">apple</a></li>
+    </ul>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+
+        // apple's li element nodes get
+        const $apple = $fruits.firstElementChild;
+
+        // get a copy of $apple -- argument optional, Boolean
+        // in this case, only li was cloned, (얕은 복사: 자기 자신 요소노드만 복제)
+        const $shallow = $apple.cloneNode(false);
+        console.log($shallow);
+
+        // $apple CLONE (깊은 복사: 자기 자신 포함 모든 후손노드를 복제)
+        const $deep = $apple.cloneNode(true);
+        console.log($deep);
+    </script>
+</body>
+
+</html>

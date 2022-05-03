@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li>apple</li>
+        <li>banana</li>
+        <li>grape</li>
+        <li>mango</li>
+    </ul>
+
+    <script>
+        // Array destructuring (구조분해 할당 ES6+)
+        const foods = ['ramen', 'orange', 'chicken'];
+
+        // make sure they have the same number
+        const [ramen, orange, chicken] = foods;
+
+        /*
+        // same code as the above code
+        const ramen = foods[0];
+        const orange = foods[1];
+        const chicken = foods[2];
+        */
+
+        console.log(`------------------------------------------`);
+
+        const $fruits = document.getElementById('fruits');
+
+        const [$apple, $banana, $grape, $mango] = $fruits.children;
+
+        // move node insertBefore(newNode, target);
+        // insertBefore(newNode, target) : if newNode is already on screen,
+        // the node is going to be moved to before target, but if it is new, then it
+        // will be created before target
+        $fruits.insertBefore($banana, $mango);
+        
+        // if it is new, then it is moved
+        // if it already exists, it is moved. got it ? hehe
+        $fruits.appendChild($grape);
+
+    </script>
+</body>
+
+</html>
