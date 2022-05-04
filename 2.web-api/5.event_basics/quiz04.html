@@ -82,9 +82,9 @@
     </div>
 
     <script>
-        const $accordionz = document.querySelectorAll('.accordion');
-        const $panelz = document.querySelectorAll('.panel');
-        
+        const $accordionz = [...document.querySelectorAll('.accordion')];
+        const $panelz = [...document.querySelectorAll('.panel')];
+
         for (let i = 0; i < $accordionz.length; i++) {
             const $accordion = $accordionz[i];
             const $panel = $panelz[i];
@@ -95,6 +95,28 @@
                 } else $panel.style.maxHeight = '0px';
             });
         }
+
+        // instructor's answer
+        /*
+        const $buttonList = [...document.querySelectorAll('.accordion')];
+
+        for (let $btn of $buttonList) {
+            $btn.addEventListener('click', function() {
+
+                $btn.classList.toggle('active');
+
+                const $panel = $btn.nextElementSibling;
+
+                console.log($panel.style.maxHeight);
+
+                if ($panel.style.maxHeight) {
+                    $panel.style.maxHeight = '0';
+                } else {
+                    $panel.style.maxHeight = '500px';
+                }
+            });
+        }
+        */
     </script>
 
 </body>
