@@ -65,8 +65,28 @@
         // if a specific class is in the element, remove
         $box.classList.toggle('circle');
 
+        console.log(`------------------------------------------`);
+
         const $btn = document.getElementById('change');
-        
+        $btn.onclick = e => {
+            /* 
+                click button then square turns into circle
+                click again then it goes back 
+            */
+
+            $box.classList.toggle('circle');
+
+            /*
+            const TARGET_CLASS = 'circle';
+            if ($box.classList.contains(TARGET_CLASS)) {
+               // current shape is circle
+               $box.classList.remove(TARGET_CLASS);
+           } else {
+               // current shape is square
+               $box.classList.add(TARGET_CLASS);
+           }
+           */
+        };
     </script>
 </body>
 
