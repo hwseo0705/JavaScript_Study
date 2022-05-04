@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="b1">click1~</button>
+    <button id="b2">click2~</button>
+    <button id="b3">click3~</button>
+
+    <script>
+        // const $buttonGroup = document.querySelectorAll('button');
+        // $buttonGroup = [...$buttonGroup];
+        // const $b1 = $buttonGroup[0];
+        // const $b2 = $buttonGroup[1];
+        // const $b3 = $buttonGroup[2];
+
+        // same thing as the above code
+        const [$b1, $b2, $b3] = [...document.querySelectorAll('button')];
+
+        const sayHello = function() {
+            alert('Hello~~');
+        };
+
+        $b1.onclick = sayHello;
+        $b2.onclick = sayHello;
+
+        $b3.onmouseenter = () => {
+            $b3.style.background = 'red';
+        };
+
+        $b3.onmouseleave = () => {
+            $b3.style.background = 'yellow';
+        };
+        
+        // disadvantage : the original leave gets overwritten
+        // property 방식 is going to remove the original handler when the
+        // same type of event declares a different handler
+        $b3.onmouseleave = () => {
+            alert('Bye Bye ~~');
+        };
+
+        // remove event handler
+        $b3.onmouseleave = null;
+
+        console.log(`------------------------------------------`);
+
+        const seo = {
+            stuNum: 11,
+            name: 'Haewon',
+            grade: 3,
+            hobby: ['soccer', 'movies'],
+            major: null,
+            study: function () {
+                console.log('Haewon is studying hard.');
+            },
+        };
+        console.log(seo.grade);
+        seo.study();
+
+        // when you change the values in the object, it will print the ones you changed
+        seo.grade = 4;
+        seo.study = function () {
+            console.log('is she tho?');
+        }
+        console.log(seo.grade);
+        seo.study();
+        console.log(seo);
+    </script>
+</body>
+
+</html>

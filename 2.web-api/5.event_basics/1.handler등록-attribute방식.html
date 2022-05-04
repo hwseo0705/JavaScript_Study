@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            margin: 20px;
+        }
+        .box.red {
+            background: red;
+        }
+        .box.green {
+            background: yellowgreen;
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- when you click -->
+    <div class="box" onclick="sayHello()"></div>
+    <!-- onmouseneter = when the mouse enters, onmouseleave = when the mouse leaves -->
+    <div class="box" onmouseleave="sayHello()"></div>
+    <div class="box" ondblclick="sayHello()"></div>
+    <div class="box red" onclick="grow()"></div>
+    <div class="box green" onclick="showText()"></div>
+
+    <script>
+        // event handler function declaration
+        // A function that the browser will call instead when a specific event occurs
+        function sayHello() {
+            alert('hello~ fool!!');
+        }
+        function grow() {
+            const $box = document.querySelector('.red');
+            $box.style.width = '200px';
+        }
+        // click green box : 'hello' appears in the middle
+        // can also do const showText = function() {}
+        function showText() {
+            const $box = document.querySelector('.green');
+            $box.textContent = 'hello~';
+        }
+    </script>
+</body>
+
+</html>
