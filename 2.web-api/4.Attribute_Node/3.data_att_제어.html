@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ul class="users">
+        <li data-user-number="4321" data-role="common">Haewon</li>
+        <li data-user-number="9999" data-role="admin">Julie</li>
+    </ul>
+
+    <script>
+        const $users = document.querySelector('.users');
+        const [$li1, $li2] = $users.children;
+        // const [$li1, $li2] = [...$users.children]; // array
+        console.log($li1.dataset);
+        console.log($li1.dataset.role);
+        console.log($li2.dataset.userNumber);
+
+        $li2.dataset.role = 'common';
+
+        // Julie's li tag, add data-user-address in runtime
+        // userAdress is what is shown in properties, and
+        // it will save as data-user-address in attributes in html
+        $li1.dataset.userAddress = 'Seoul City'
+
+        // data-user-address remove, deleting objects damn,,,
+        delete $li1.dataset.userAddress;
+
+        // document.querySelector('html').dataset.dark = true; // to make naver darkmode
+    </script>
+
+</body>
+
+</html>

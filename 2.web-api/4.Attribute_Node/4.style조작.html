@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: lightgrey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .red {
+            color: red;
+            border: 2px dashed tomato;
+        }
+
+        .blue {
+            color: blue;
+            border: 2px dashed aqua;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red">Hello</div>
+    <button id="change">change</button>
+    <script>
+        // inline style operation 조작 -> has priority over css style
+        const $box = document.querySelector('.box');
+        $box.style.color = 'violet';
+        $box.style.fontSize = '1.2em';
+
+        // class 조작
+        // do not use className - the classes r shown as a single string
+        // $box.className = 'blue'; // both box and red changes to blue
+
+        // add class to an element
+        $box.classList.add('circle');
+        $box.classList.add('aaa', 'bbb', 'ccc');
+
+        // remove class from an element
+        $box.classList.remove('circle');
+        $box.classList.remove('aaa', 'ccc');
+
+        // Replace classes in elements
+        $box.classList.replace('red', 'blue');
+
+        // Confirmation of the existence of a specific class in the element
+        console.log($box.classList.contains('red'));
+        console.log($box.classList.contains('box'));
+
+        // if a specific class in not in the element, add
+        $box.classList.toggle('circle');
+        // if a specific class is in the element, remove
+        $box.classList.toggle('circle');
+
+        const $btn = document.getElementById('change');
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="username" value="Haewon">
+
+    <script>
+        const $input = document.querySelector('input');
+
+        // Haewon 참조 - could do this but not good
+        // const userName = $input.attributes.value.value;
+        // do this instead
+        const userName = $input.getAttribute('value');
+        console.log(userName);
+
+        // id값 참조
+        const inputId = $input.getAttribute('id');
+        console.log(inputId);
+
+        // attribute value modify
+        // value Haewon -> Julie
+        // $input.attributes.value.value = 'Julie';
+        $input.setAttribute('value', 'Julie');
+
+        // modify id att. vavlue username -> membername
+        $input.setAttribute('id', 'member-name');
+
+        // add attributes - add something new and it will add
+        $input.setAttribute('title', 'name');
+        $input.setAttribute('placeholder', 'Name in Korean');
+
+        // remove attribute
+        // $input.attributes.value.value = '';
+        $input.removeAttribute('value');
+
+
+        // remove input
+
+        // document.body.removeChild($input);
+
+        // 속성 존재 유무 확인
+        const logical = $input.hasAttribute('type');
+        console.log(logical);
+
+    </script>
+</body>
+</html>
