@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .root {
+            width: 300px;
+            height: 300px;
+            background: salmon;
+        }
+
+        .parent {
+            width: 200px;
+            height: 200px;
+            background: lightgreen;
+        }
+
+        .child {
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+        }
+
+        .target {
+            width: 50px;
+            height: 50px;
+            background: lightpink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="root">
+        <div class="parent">
+            <div class="child">
+                <div class="target"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // the child events also call parents' events
+        document.querySelector('body').onclick = e => {
+            alert('body!')
+        };
+        document.querySelector('.root').onclick = e => {
+            alert('root!')
+        };
+        document.querySelector('.parent').onclick = e => {
+            alert('parent!')
+        };
+        document.querySelector('.child').onclick = e => {
+            alert('child!')
+        };
+        document.querySelector('.target').onclick = e => {
+            alert('target!')
+            // this will stop 'target' from bubbling all the way up
+            e.stopPropagation(); // stop bubbling
+        };
+    </script>
+
+</body>
+
+</html>

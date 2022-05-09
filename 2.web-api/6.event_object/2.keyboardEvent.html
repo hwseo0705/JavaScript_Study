@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .msg {
+            margin-top: 20px;
+            padding: 5px;
+            width: 160px;
+            border-bottom: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" id="text-input">
+    <p class="msg"></p>
+
+    <script>
+        const $txtInput = document.getElementById('text-input');
+        $txtInput.addEventListener('keyup', function(e) {
+            // console.log('Keyboard Event Occurred!');
+            console.log(e);
+            if (e.key === 'Enter' ) {
+                console.log('Enter Key Pressed');
+                const $msg = document.querySelector('.msg');
+                $msg.textContent = $txtInput.value;
+                $txtInput.value = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
