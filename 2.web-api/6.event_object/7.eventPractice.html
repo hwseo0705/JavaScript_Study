@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            display: flex;
+            list-style: none;
+            padding: 20px;
+            border: 2px solid red;
+        }
+
+        #fruits li {
+            width: 100px;
+            background: orange;
+            margin-right: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .active {
+            color: red;
+            text-decoration: underline;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <ul id="fruits">
+        <li data-number="1" id="apple" class="active">Apple</li>
+        <li data-number="2" id="banana">Banana</li>
+        <li data-number="3" id="grape">Grape</li>
+    </ul>
+
+    <p>Selected Fruit: <em class="msg">Apple</em></p>
+
+    <!-- if you wrap it in form, you can add it by pressing enter instead of having to click everytime  -->
+    <form action="#">
+        <label>
+            # 새로운 과일 추가하기:
+            <input type="text" class="text-box">
+            <button id="add">추가</button>
+        </label>
+    </form>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+
+        //이벤트 핸들러 함수 정의
+        function activate(e) {
+
+            if (!e.target.matches('#fruits > li')) return;
+
+            //1. 클릭 대상을 제외한 li태그에 있는 class=active 제거
+            //1-1. ul의 모든 자식 가져오기
+            const $liList = [...$fruits.children];
+
+            // 1-2. 모든 li를 순회하여 class=active 탐색
+            for (let $li of $liList) {
+                if ($li.classList.contains('active')) {
+                    $li.classList.remove('active');
+                    break;
+                }
+            }
+
+            //2. 클릭 대상에 class=active를 부여
+            e.target.classList.add('active');
+
+            //3. 클릭한 li태그의 텍스트를 복사하여 em태그에 텍스트로 수정
+            const $em = document.querySelector('.msg');
+            $em.textContent = e.target.textContent;
+        }
+
+        $fruits.onclick = activate;
+
+        // 1. give click event on the add button
+        const $addBtn = document.getElementById('add');
+
+        const makeNewLi = e => {
+            
+            if ($txtInput.value === '') return;
+
+            /* 
+                # adding data-number
+                Check the Data-Number value of the last Li element of the 
+                current state and give a +1 value to Li to be added.
+            */
+           const curLastNumber = $fruits.lastElementChild.dataset.number;
+           console.log(`current last number: ${curLastNumber}`);
+
+            // console.log('clicked add button!');
+
+            // 2-1. Create the text recorded in the input as li tag
+            const $newLi = document.createElement('li');
+            const $input = document.querySelector('.text-box');
+            $newLi.textContent = $input.value;
+
+            // add data-numbere to the newLi
+            $newLi.dataset.number = +curLastNumber + 1;
+
+            // 2-2. Li tag grants the text as an ID
+            $newLi.setAttribute('id', $newLi.textContent.toLowerCase());
+
+            // 3. Add Li created in UL
+            $fruits.appendChild($newLi);
+
+            // 4. input text reset
+            $input.value = '';
+        };
+
+        $addBtn.onclick = makeNewLi;
+
+        // my work
+        /*
+        const $txtInput = document.querySelector('.text-box');
+        const $button = document.getElementById('add');
+        $button.onclick = e => {
+            if ($txtInput.value === '') return;
+            const $newLi = document.createElement('li');
+            $newLi.textContent = $txtInput.value;
+            $newLi.setAttribute('id', $newLi.textContent.toLowerCase());
+            $fruits.appendChild($newLi);
+            $txtInput.value = '';
+        };
+        */
+    </script>
+
+</body>
+
+</html>

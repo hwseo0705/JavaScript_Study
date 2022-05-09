@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- in this case, there are two js files with same variable names
+        the first declared script will be used here -->
+        <!-- <script type="text/javascript" src="park.mjs" defer></script> -->
+        <!-- <script type="text/javascript" src="kim.mjs" defer></script> -->
+
+    <!-- defer : body 렌더링이 끝난 후 실행 -->
+    <!-- it will work fine even if the script's before body
+        also, type="text/javascript" can be omitted -->
+    <script type="module" src="app.js" defer></script>
+</head>
+
+<body>
+
+    <div class="box"></div>
+
+    <!-- <script src="app.js"></script> -->
+
+</body>
+
+</html>
