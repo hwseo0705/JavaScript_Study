@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .link2 {
+            text-decoration: underline;
+            color: rgb(94, 4, 94);
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="https://www.naver.com" class="link">Naver Link</a>
+
+    <!-- <div class="link2">Google Link</div> -->
+
+    <form action="/hello">
+        <input type="text" , name="ttt">
+        <button id="check" type="submit">OK</button>
+    </form>
+
+    <script>
+        /*
+        // this is possible but structurally, do not do this lol
+        const $link2 = document.querySelector('.link2');
+        $link2.onclick = e => {
+            location.href = 'https://www.google.com';
+        };
+        */
+
+        // confirm(message) : After showing the message in the notification window
+        // giving the confirmation/cancellation option, if yes return true else return false
+        // const answer = confirm('Are You Sure?');
+        // console.log(answer);
+
+        const $link = document.querySelector('.link');
+        $link.onclick = e => {
+            if (!confirm('Redirect to Naver?')) {
+                // if no, run this code
+                // stops the basic function of the tag
+                e.preventDefault();
+            }
+        };
+
+        // submit button event
+        const $subBtn = document.getElementById('check');
+        $subBtn.onclick = e => {
+            // when you press ok, verify the input first
+            e.preventDefault();
+            const $input = $subBtn.previousElementSibling;
+            if ($input.value === '') {
+                alert("필수입력사항입니다~~");
+                return;
+            }
+
+            // 서버로 데이터 전송
+            const $form = $subBtn.parentElement;
+            $form.submit();
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            display: flex;
+            list-style: none;
+            padding: 20px;
+            border: 2px solid red;
+        }
+
+        #fruits li {
+            width: 100px;
+            background: orange;
+            margin-right: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .active {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <ul id="fruits">
+        <li id="apple" class="active">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="grape">Grape</li>
+        <li id="orange">Orange</li>
+    </ul>
+    
+    <p>Selected Fruit: <em class="msg">Apple</em></p>
+    
+    <script>
+        const $fruits = document.getElementById('fruits');
+        
+        //이벤트 핸들러 함수 정의
+        function activate(e) {
+
+            // but when you use bubbling, then clicking ul will also run 'activate'
+            // so if you click ul, do not run the following code
+            // $elementNode.matches('css selector') : if the element fits the selector, return true
+            if (!e.target.matches('#fruits > li')) return;
+
+            //1. 클릭 대상을 제외한 li태그에 있는 class=active 제거
+            //1-1. ul의 모든 자식 가져오기
+            const $liList = [...$fruits.children];
+
+            // 1-2. 모든 li를 순회하여 class=active 탐색
+            for (let $li of $liList) {
+                if ($li.classList.contains('active')) {
+                    $li.classList.remove('active');
+                    break;
+                }
+            }
+
+            //2. 클릭 대상에 class=active를 부여
+            e.target.classList.add('active');
+
+            //3. 클릭한 li태그의 텍스트를 복사하여 em태그에 텍스트로 수정
+            const $em = document.querySelector('.msg');
+            $em.textContent = e.target.textContent;
+        }
+
+        /*
+            - the problem with this method is that
+            when binding event handler on each elements one by one, when the new element is added (동적), 
+            you have to assign a handler again every time, 메모리 소비
+
+            - If the event handler of the child elements is the same, 
+            it is rather helpful to optimize performance by binding the handler 
+            only once in the parent element and spreading it to the child elements.
+        */
+
+        // // event handler (activate) binding
+        // for (let $li of [...$fruits.children]) {
+        //     $li.onclick = activate;
+        // }
+
+        // it will be better to propagate, where you bind the parent (ul),
+        // assign an event to parent then use bubbling (children will use parent's handler)
+        $fruits.onclick = activate;
+
+    </script>
+
+</body>
+
+</html>
