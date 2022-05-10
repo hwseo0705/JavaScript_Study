@@ -25,6 +25,7 @@ function makeIcons() {
     $numbers.appendChild($virtual);
 }
 
+// remove everything below min
 function removeMins(min, answer) {
     const $list = document.querySelectorAll('.icon');
     for (let i = min-1; i < answer; i++) {
@@ -32,6 +33,7 @@ function removeMins(min, answer) {
     }
 }
 
+// remove everything above max
 function removeMaxs(max, answer) {
     const $list = document.querySelectorAll('.icon');
     for (let i = answer-1; i < max; i++) {
@@ -63,23 +65,40 @@ function removeMaxs(max, answer) {
         const $up = document.getElementById('up');
         const $down = document.getElementById('down');
 
+        // if the answer matches
         if (gameData.answer === gameData.secret) {
+
             const $congratulations = document.getElementById('finish');
+
+            // remove up down animation
             $up.classList.remove('selected');
             $down.classList.remove('selected');
+            
+            // add class 'show' to show congratulations
             $congratulations.classList.add('show');
-        } else if (gameData.answer < gameData.secret) {
+        } else if (gameData.answer < gameData.secret) { // if answer < actual
+
+            // add 'up' animation, remove 'down' animation
             $up.classList.add('selected');
             $down.classList.remove('selected');
-            const $numbers = document.getElementById('numbers');
+
+            // remove evereything below min, reset min
             removeMins(gameData.min, gameData.answer);
             gameData.min = gameData.answer + 1;
+
+            // change the beginning number
             document.getElementById('begin').textContent = gameData.min;
-        } else if (gameData.answer > gameData.secret) {
+        } else if (gameData.answer > gameData.secret) { // if answer > actual
+
+            // add 'down' animation, remove 'up' animation
             $down.classList.add('selected');
             $up.classList.remove('selected');
+
+            // remove everything above max, reset max
             removeMaxs(gameData.max, gameData.answer);
             gameData.max = gameData.answer - 1;
+
+            // change the end number
             document.getElementById('end').textContent = gameData.max;
         }
     });
