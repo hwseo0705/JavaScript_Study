@@ -28,7 +28,7 @@ function makeIcons() {
 // remove everything below min
 function removeMins(min, answer) {
     const $list = document.querySelectorAll('.icon');
-    for (let i = min-1; i < answer; i++) {
+    for (let i = min - 1; i < answer; i++) {
         $list[i].style.display = 'none';
     }
 }
@@ -36,7 +36,7 @@ function removeMins(min, answer) {
 // remove everything above max
 function removeMaxs(max, answer) {
     const $list = document.querySelectorAll('.icon');
-    for (let i = answer-1; i < max; i++) {
+    for (let i = answer - 1; i < max; i++) {
         $list[i].style.display = 'none';
     }
 }
@@ -73,7 +73,7 @@ function removeMaxs(max, answer) {
             // remove up down animation
             $up.classList.remove('selected');
             $down.classList.remove('selected');
-            
+
             // add class 'show' to show congratulations
             $congratulations.classList.add('show');
         } else if (gameData.answer < gameData.secret) { // if answer < actual
