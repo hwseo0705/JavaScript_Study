@@ -68,9 +68,12 @@ function clearIcons(isUp, target) {
 
 
 // 정답을 맞출 경우 해야할 일
-function processCorrectCase() {
+function processCorrectCase(target) {
     const $finish = document.getElementById('finish');
     $finish.classList.add('show');
+
+    // 정답 div.icon에 id=move 추가
+    target.setAttribute('id', 'move');
 }
 
 // 사용자가 선택한 숫자를 실제정답과 비교해서 결과를 처리하는 함수
@@ -78,7 +81,7 @@ function compareAnswer(target) {
     
     if (gameData.answer === gameData.secret) {
         //정답인 경우
-        processCorrectCase();
+        processCorrectCase(target);
     } else if (gameData.answer < gameData.secret) {
         //UP인 경우
         processUpDownCase(true, target);
