@@ -1,7 +1,9 @@
+
 //=========== 전역변수, 함수 정의부 =============//
 
 // 할 일 데이터
-const todos = [{
+const todos = [
+    {
         id: 1,
         text: '할 일 1',
         done: false
@@ -79,7 +81,7 @@ function insertToDo() {
 
 // data-id가 주어지면 해당 id와 일치하는 객체의 인덱스를 리턴
 function findIndexById(dataId) {
-
+    
     for (let i = 0; i < todos.length; i++) {
         // console.log(`todos[i].id: ${typeof todos[i].id}`);
         // console.log(`dataId: ${typeof dataId}`);
@@ -124,7 +126,7 @@ function changeCheckState($checkbox) {
     // console.log(todos[idx]);
 
     todos[idx].done = !todos[idx].done;
-    // console.log(todos);
+    console.log(todos);
 }
 
 // 할 일 삭제 처리 함수
@@ -135,97 +137,100 @@ function removeToDo($targetLi) {
     $toDoList.removeChild($targetLi);
 
     //2. 데이터 처리: 배열에서 제거된 li에 매칭되는 객체를 삭제
-
+    
     const delIndex = findIndexById($targetLi.dataset.id);
     todos.splice(delIndex, 1);
     // console.log(todos);
 }
 
-function replaceSpan(targetLi) {
-    const $oldSpan = targetLi.querySelector('.text');
-
-    const $newInput = document.createElement('input');
-    $newInput.setAttribute('type', 'text');
-    $newInput.setAttribute('value', $oldSpan.textContent)
-    $newInput.classList.add('modify-input');
-
-    targetLi.querySelector('.checkbox').replaceChild($newInput, $oldSpan);
-}
-
-function replaceInput(targetLi) {
-    const $oldInput = targetLi.querySelector('.modify-input');
-
-    const $newSpan = document.createElement('span');
-    $newSpan.classList.add('text');
-    $newSpan.textContent = $oldInput.value;
-
-    const modIndex = findIndexById(targetLi.dataset.id);
-    // also modify in database
-    todos[modIndex].text = $oldInput.value;
-    // console.log(todos[modIndex].done);
-    targetLi.querySelector('.checkbox').replaceChild($newSpan, $oldInput);
-}
-
 // 수정 모드 진입처리
-function enterModifyMode(targetLi) {
+function enterModifyMode($modifySpan) {
 
-    // change icon
-    const $modSpan = targetLi.querySelector('.modify').querySelector('.lnr');
-    // console.log($modSpan);
-    if ($modSpan.classList.contains('lnr-undo')) {
-        $modSpan.classList.replace('lnr-undo', 'lnr-checkmark-circle');
-        replaceSpan(targetLi);
-    } else {
-        $modSpan.classList.replace('lnr-checkmark-circle', 'lnr-undo');
-        replaceInput(targetLi);
-    }
+    // 아이콘 변경
+    $modifySpan.classList.replace('lnr-undo', 'lnr-checkmark-circle');
 
-    // change span's text to input[type=text]
-    // input's class="modify-input"
+    // 텍스트부분 span -> input[type=text]로 변경
+    // input의 class="modify-input"
 
+    // 교체 대상 span.text
+    const $textSpan = $modifySpan.parentElement.previousElementSibling.lastElementChild;
+    
+    // input 만들기
+    const $modInput = document.createElement('input');
+    $modInput.setAttribute('type', 'text');
+    $modInput.setAttribute('value', $textSpan.textContent);
+    $modInput.classList.add('modify-input');
+
+    // 노드 교체
+    $textSpan.parentElement.replaceChild($modInput, $textSpan);
 }
 
-    //=========== 메인 실행부 ===================//
-    (function () {
+// 수정 완료 처리 함수
+function modifyToDo($modifySpan) {
+    //아이콘 변경
+    $modifySpan.classList.replace('lnr-checkmark-circle', 'lnr-undo');
 
-        //========= 이벤트 처리 ===========//
+    //교체대상 input
+    const $modInput = $modifySpan.parentElement.previousElementSibling.lastElementChild;
 
-        // 할 일 추가 클릭 이벤트
-        const $addBtn = document.getElementById('add');
-        $addBtn.addEventListener('click', e => {
-            e.preventDefault();
-            // console.log('할 일 추가!');
+    // span.text 생성
+    const $textSpan = document.createElement('span');
+    $textSpan.classList.add('text');
+    $textSpan.textContent = $modInput.value;
 
-            insertToDo();
-        });
+    // 노드 교체
+    const $label = $modInput.parentElement;
+    $label.replaceChild($textSpan, $modInput);
 
-        // 할 일 완료 체크 이벤트 (change)
-        const $toDoList = document.querySelector('.todo-list');
-        $toDoList.addEventListener('change', e => {
-            // console.log('할 일 체크!');
-            // console.log(e.target);
-            if (e.target.matches('.modify-input')) {
-                return;
+    // 데이터 변동 처리
+    const idx = findIndexById($label.parentElement.dataset.id);
+    todos[idx].text = $textSpan.textContent;
+    console.log(todos);
+}
+
+//=========== 메인 실행부 ===================//
+(function() {
+
+    //========= 이벤트 처리 ===========//
+
+    // 할 일 추가 클릭 이벤트
+    const $addBtn = document.getElementById('add');
+    $addBtn.addEventListener('click', e => {
+        e.preventDefault();
+        // console.log('할 일 추가!');
+
+        insertToDo();
+    });
+
+    // 할 일 완료 체크 이벤트 (change)
+    const $toDoList = document.querySelector('.todo-list');
+    $toDoList.addEventListener('change', e => {
+
+        if (!e.target.matches('.checkbox input[type=checkbox]')) return;
+
+        // console.log('할 일 체크!');
+        // console.log(e.target);
+        changeCheckState(e.target);
+    });
+
+    $toDoList.addEventListener('click', e => {
+        if (e.target.matches('.remove span')) {
+            // 할 일 삭제 버튼 클릭 이벤트
+            // console.log('할 일 삭제!!!');
+            
+            if (confirm('정말로 삭제할까요??')) {
+                removeToDo(e.target.parentElement.parentElement);
             }
-            changeCheckState(e.target);
-        });
+        } else if (e.target.matches('.modify .lnr-undo')) {
+            // 할 일 수정모드 진입 클릭 이벤트
+            // console.log('수정 모드 진입');
+            enterModifyMode(e.target);
+        } else if (e.target.matches('.modify .lnr-checkmark-circle')) {
+            // 할 일 수정 완료 클릭 이벤트
+            // console.log('수정 완료!');
+            modifyToDo(e.target);
+        }
+    });    
 
-        $toDoList.addEventListener('click', e => {
-            if (e.target.matches('.remove span')) { 
-                // 할 일 삭제 버튼 클릭 이벤트
-                // console.log('할 일 삭제!!!');
 
-                if (confirm('정말로 삭제할까요??')) {
-                    removeToDo(e.target.parentElement.parentElement);
-                }
-            } else if (e.target.matches('.modify span')) { 
-                // 할 일 수정모드 진입 클릭 이벤트
-                // console.log('수정 모드 진입');
-
-                enterModifyMode(e.target.parentElement.parentElement);
-            }
-        });
-
-        // 할 일 수정 완료 클릭 이벤트
-
-    })();
+})();
