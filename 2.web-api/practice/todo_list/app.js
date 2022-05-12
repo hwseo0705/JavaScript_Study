@@ -185,47 +185,47 @@ function enterModifyMode(targetLi) {
 
 }
 
-    //=========== 메인 실행부 ===================//
-    (function () {
+//=========== 메인 실행부 ===================//
+(function () {
 
-        //========= 이벤트 처리 ===========//
+    //========= 이벤트 처리 ===========//
 
-        // 할 일 추가 클릭 이벤트
-        const $addBtn = document.getElementById('add');
-        $addBtn.addEventListener('click', e => {
-            e.preventDefault();
-            // console.log('할 일 추가!');
+    // 할 일 추가 클릭 이벤트
+    const $addBtn = document.getElementById('add');
+    $addBtn.addEventListener('click', e => {
+        e.preventDefault();
+        // console.log('할 일 추가!');
 
-            insertToDo();
-        });
+        insertToDo();
+    });
 
-        // 할 일 완료 체크 이벤트 (change)
-        const $toDoList = document.querySelector('.todo-list');
-        $toDoList.addEventListener('change', e => {
-            // console.log('할 일 체크!');
-            // console.log(e.target);
-            if (e.target.matches('.modify-input')) {
-                return;
+    // 할 일 완료 체크 이벤트 (change)
+    const $toDoList = document.querySelector('.todo-list');
+    $toDoList.addEventListener('change', e => {
+        // console.log('할 일 체크!');
+        // console.log(e.target);
+        if (e.target.matches('.modify-input')) {
+            return;
+        }
+        changeCheckState(e.target);
+    });
+
+    $toDoList.addEventListener('click', e => {
+        if (e.target.matches('.remove span')) {
+            // 할 일 삭제 버튼 클릭 이벤트
+            // console.log('할 일 삭제!!!');
+
+            if (confirm('정말로 삭제할까요??')) {
+                removeToDo(e.target.parentElement.parentElement);
             }
-            changeCheckState(e.target);
-        });
+        } else if (e.target.matches('.modify span')) {
+            // 할 일 수정모드 진입 클릭 이벤트
+            // console.log('수정 모드 진입');
 
-        $toDoList.addEventListener('click', e => {
-            if (e.target.matches('.remove span')) { 
-                // 할 일 삭제 버튼 클릭 이벤트
-                // console.log('할 일 삭제!!!');
+            enterModifyMode(e.target.parentElement.parentElement);
+        }
+    });
 
-                if (confirm('정말로 삭제할까요??')) {
-                    removeToDo(e.target.parentElement.parentElement);
-                }
-            } else if (e.target.matches('.modify span')) { 
-                // 할 일 수정모드 진입 클릭 이벤트
-                // console.log('수정 모드 진입');
+    // 할 일 수정 완료 클릭 이벤트
 
-                enterModifyMode(e.target.parentElement.parentElement);
-            }
-        });
-
-        // 할 일 수정 완료 클릭 이벤트
-
-    })();
+})();
