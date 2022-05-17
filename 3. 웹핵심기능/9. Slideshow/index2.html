@@ -170,8 +170,8 @@
 
             let $slides = document.querySelectorAll(".mySlides");
             let $dots = document.querySelectorAll(".dot");
-            
-            
+
+
             // ex: 3번 슬라이드에서 다음버튼을 누르면 1번 슬라이드로 이동
             if (n > $slides.length) {
                 slideIndex = 1
@@ -200,17 +200,33 @@
             $dots[slideIndex - 1].classList.add('active');
 
         }
-        
+
         // 이전, 다음 버튼 클릭 이벤트 
         document.querySelector('.btn-group').onclick = plusSlides;
-        
+
         // 도트 클릭 이벤트
         document.querySelector('.dot-container').onclick = currentSlide;
 
 
         // 2초마다 다음버튼 자동 클릭
         const $next = document.querySelector('.next');
-        
+
+
+        /* 
+            # setTimeout(callback, milis)
+            - callback : function to execute
+            - milis : execution timeout(1/1000 second)
+
+            - 설정한 밀리초시간 이후에 callback을 단 1회 실행함
+
+            # setInterval(callback, milis)
+            - callback : function to execute
+            - milis : execution time interval(1/1000 second)
+            
+            - 설정한 밀리초 간격만큼 반복해서 지속적으로 callback을 실행함
+            
+            */
+
         setInterval(() => {
             $next.click();
         }, 2000);
