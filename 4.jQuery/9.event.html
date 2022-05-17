@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESET CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"> -->
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title></title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: tomato;
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box"></div>
+
+    <button class="btn">Click</button>
+    <button class="btn2">Click2</button>
+
+    <script>
+        $('.btn').click(function (e) {
+            $('.box').css('background', 'powderblue');
+        });
+
+        /*
+            화살표 함수는 'this' 사용 불가능
+        */
+
+        $('.box').mouseenter(function (e) {
+            // this : self -> '.box'
+            $(this).css('border', '2px dashed blue');
+        });
+
+        $('.btn2').on('click', e => {
+            alert('Second Button Clicked');
+        });
+
+        // when you are adding multiple events on one element, use on
+        $('.box').on({
+            click: function (e) {
+                $(this).css('transform', 'rotate(45deg)');
+            },
+            dblclick: function (e) {
+                $(this).hide();
+            },
+            mouseleave: function (e) {
+                $(this).css('border-radius', '50%');
+            },
+        });
+    </script>
+
+</body>
+
+</html>

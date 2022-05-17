@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESET CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"> -->
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+
+    <input type="text" id="account" value="abc1234">
+
+    <p class="msg"></p>
+
+    <script>
+        $(function () {
+
+            // const id = document.getElementById('account').getAttribute('id');
+
+            // 속성값 얻기 -- get the value of the attribute
+            const id = $('#account').attr('id');    
+            console.log(id);
+
+            // 속성값 변경 -- change the value of the attribute
+            $('#account').attr('type', 'email');
+
+            // 속성값 추가 -- add attribute
+            $('#account').attr('title', 'enter email');
+
+            // 속성값 제거 -- remove attribute
+            $('#account').removeAttr('title');
+
+            // this is pretty cool hehehe
+            $('#account').keyup(e => {
+                // value 속성 얻기
+                $('p').text($('#account').val());
+
+                // html() : innerHTML
+                // text() : textContent, innerText
+                // val() : value
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
