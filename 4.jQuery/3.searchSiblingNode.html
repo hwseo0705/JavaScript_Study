@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESET CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title></title>
+
+    <style>
+        .ancestors * {
+            display: block;
+            border: 2px solid grey;
+            color: grey;
+            padding: 20px;
+            margin: 15px;
+        }
+
+        .ancestors>div {
+            width: 500px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        $(() => {
+            
+            // search all siblings
+            const $siblings = $('h1').siblings();
+            $siblings.css('border-color', 'blue');
+
+            // search certain siblings
+            const $pList = $('h1').siblings('p');
+            $pList.css('color', 'red');
+
+            // next sibling (1) search
+            const $next = $('h1').next();
+            $next.css('font-size', '2em');
+
+            // all next siblings search
+            const $nextAll = $('h1').nextAll();
+            $nextAll.css('background', 'lightsalmon');
+
+            // next sibling search range restrictions
+            const $nextUntil = $('span').nextUntil('p');
+            $nextUntil.css('font-weight', 'bold');
+
+            // prev sibling (1) search -> .prev()
+            // all prev siblings search -> .prevAll()
+            // prev sibling search range restrictions -> prevUntil()
+
+        });
+    </script>
+
+    <!-- .ancestors>div>ul>li>span -->
+    <div class="ancestors">
+        <div class="ggp"> div (great-grandparent)
+            <p>p</p>
+            <span>span</span>
+            <h1>h1</h1>
+            <h2>h2</h2>
+            <p>p</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
