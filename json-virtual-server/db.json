@@ -10,23 +10,9 @@
     {
       "id": "2",
       "account": "ggg4444",
-      "userName": "김영희",
+      "userName": "영희팍",
       "password": "dsdfafd",
-      "address": "부산시 수영구"
-    },
-    {
-      "id": "3",
-      "account": "abc1234",
-      "userName": "깍두기",
-      "password": "dsdfdfddfdf",
-      "address": "서울시 강남구"
-    },
-    {
-      "id": "5",
-      "account": "mangdungee",
-      "password": "1234",
-      "userName": "Julie",
-      "address": "서울시 영등포구"
+      "address": "로스앤젤레스"
     }
   ],
   "board": [
