@@ -1,0 +1,20 @@
+{
+  "name": "js_study",
+  "version": "1.0.0",
+  "description": "1. VSCode bottom left wheel click\r 1. Select 사용자 코드 조각\r 1. search 'html', open 'html.json', and insert the following code",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwseo0705/JavaScript_Study.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hwseo0705/JavaScript_Study/issues"
+  },
+  "homepage": "https://github.com/hwseo0705/JavaScript_Study#readme"
+}
